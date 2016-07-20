@@ -14,4 +14,5 @@
 +(NSString *) openCVVersionString;
 +(UIImage *) makeGrayFromImage: (UIImage *)image;
 +(UIImage *) subtractImages :(UIImage *) image1  :(UIImage *) image2;
++(UIImage *) cleanse:(UIImage *)image;
 @end

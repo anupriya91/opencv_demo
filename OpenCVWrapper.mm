@@ -22,39 +22,39 @@ using namespace std;
 +(UIImage *) makeGrayFromImage:(UIImage *)image {
     cv::Mat imageMat;
     UIImageToMat(image, imageMat);
-    if (imageMat.channels() == 1) return image;
-    
+
     cv::Mat grayMat;
-    cv::cvtColor(imageMat,grayMat, CV_BGR2GRAY);
+
+    cv::threshold(imageMat, grayMat, 250, 255, CV_THRESH_BINARY);
     
     return MatToUIImage(grayMat);
     
 }
 
 +(UIImage *) subtractImages :(UIImage *) image1  :(UIImage *) image2{
+    
     cv::Mat imageMat1;
     UIImageToMat(image1, imageMat1);
-    cv::cvtColor(imageMat1,imageMat1, CV_RGB2GRAY);
-
     
     cv::Mat imageMat2;
-    UIImageToMat(image2, imageMat2);
-    cv::cvtColor(imageMat2,imageMat2, CV_RGB2GRAY);
-
-    cout << "imageMat1 " << imageMat1.rows  << imageMat1.cols <<endl;
-
-    cout << "imageMat2 " << imageMat2.rows  << imageMat2.cols <<endl;
+    UIImageToMat(image2, imageMat2);    
+    //cout << "imageMat1 " << imageMat1.rows  << imageMat1.cols <<endl;
+    //cout << "imageMat2 " << imageMat2.rows  << imageMat2.cols <<endl;
+//    cout << "imageMat1 " << imageMat1.type() <<endl;
+//    cout << "imageMat2 " << imageMat2.type() <<endl;
     
     cv::Mat imageMat3;
-    cv::add(imageMat1, imageMat2, imageMat3);
-
-    
-    
+    cv::bitwise_not(imageMat1, imageMat1);
+    cv::bitwise_or(imageMat1, imageMat2, imageMat3);
+    //cv::bitwise_xor(imageMat1, imageMat2, imageMat3);
     return MatToUIImage(imageMat3);
     
 }
 
-
-
++(UIImage *) cleanse:(UIImage *)image {
+    cv::Mat imageMat1;
+    UIImageToMat(image, imageMat1);
+    return MatToUIImage(imageMat1);
+}
 
 @end

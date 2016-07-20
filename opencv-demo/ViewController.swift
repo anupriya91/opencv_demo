@@ -44,14 +44,18 @@ class ViewController: UIViewController {
         imageDifferenceView.layer.cornerRadius = 5.0
         imageDifferenceView.layer.borderWidth = 2 // as you wish
         
+        //spiralImageView.image = OpenCVWrapper.makeGrayFromImage(spiralImageView.image);
+        
 
         
         openCVVersionLabel.text = OpenCVWrapper.openCVVersionString();
-        red   = (0.0/255.0)
-        green = (0.0/255.0)
-        blue  = (0.0/255.0)
-
-
+        red   = 1.0;
+        green = 1.0;
+        blue  = 1.0;
+//
+//        red   = (0.0/255.0);
+//        green = (0.0/255.0);
+//        blue  = (0.0/255.0);
 
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -62,8 +66,23 @@ class ViewController: UIViewController {
     }
 
     @IBAction func maskSpiral(sender: AnyObject) {
-        imageDifferenceView.image = OpenCVWrapper.subtractImages( spiralImageView.image, userDrawView2.image ) ;
+        
+        //userDrawView2.image = OpenCVWrapper.makeGrayFromImage(userDrawView2.image);
+        
+        
+        
+        
+        //userDrawView.image = OpenCVWrapper.subtractImages(spiralImageView.image, userDrawView2.image);
+        
+        //userDrawView2.image = OpenCVWrapper.cleanse(userDrawView2.image);
+        userDrawView.image = OpenCVWrapper.cleanse(userDrawView2.image);
+        imageDifferenceView.image = OpenCVWrapper.subtractImages(  userDrawView2.image, spiralImageView.image);
+
         //imageDifferenceView.image = userDrawView2.image;
+        
+        //OpenCVWrapper.makeGrayFromImage( spiralImageView.image),
+        //OpenCVWrapper.makeGrayFromImage( userDrawView2.image)
+
     }
     
     override func touchesBegan( touches: Set<UITouch>,
