@@ -32,20 +32,29 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        userDrawView2.image = nil;
         userDrawView2.layer.borderColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1.0).CGColor
         userDrawView2.layer.cornerRadius = 5.0
         userDrawView2.layer.borderWidth = 2 // as you wish
+//        userDrawView2.alpha = 1.0;
+//        userDrawView2.backgroundColor = UIColor.clearColor();
+//        
         
+        
+        userDrawView.image = nil;
         userDrawView.layer.borderColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1.0).CGColor
         userDrawView.layer.cornerRadius = 5.0
         userDrawView.layer.borderWidth = 2 // as you wish
+//        userDrawView.layer.backgroundColor = UIColor.grayColor().CGColor;
+        //userDrawView.alpha = 1.0;
+        //userDrawView.backgroundColor = UIColor.clearColor();
         
+        imageDifferenceView.image = nil;
         imageDifferenceView.layer.borderColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1.0).CGColor
         imageDifferenceView.layer.cornerRadius = 5.0
         imageDifferenceView.layer.borderWidth = 2 // as you wish
-        
-        //spiralImageView.image = OpenCVWrapper.makeGrayFromImage(spiralImageView.image);
-        
+//        imageDifferenceView.alpha = 1.0;
+//        imageDifferenceView.backgroundColor = UIColor.clearColor();
 
         
         openCVVersionLabel.text = OpenCVWrapper.openCVVersionString();
@@ -58,6 +67,8 @@ class ViewController: UIViewController {
 //        blue  = (0.0/255.0);
 
         // Do any additional setup after loading the view, typically from a nib.
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -68,20 +79,25 @@ class ViewController: UIViewController {
     @IBAction func maskSpiral(sender: AnyObject) {
         
         //userDrawView2.image = OpenCVWrapper.makeGrayFromImage(userDrawView2.image);
-        
-        
-        
-        
         //userDrawView.image = OpenCVWrapper.subtractImages(spiralImageView.image, userDrawView2.image);
-        
-        //userDrawView2.image = OpenCVWrapper.cleanse(userDrawView2.image);
-        userDrawView.image = OpenCVWrapper.cleanse(userDrawView2.image);
-        imageDifferenceView.image = OpenCVWrapper.subtractImages(  userDrawView2.image, spiralImageView.image);
-
+//        userDrawView.image = OpenCVWrapper.cleanse(userDrawView.image);
+//        imageDifferenceView.image = OpenCVWrapper.cleanse(imageDifferenceView.image);
+//        
+//        imageDifferenceView.image = nil;
+//        userDrawView.image = nil;
+        //userDrawView2.image = nil;
         //imageDifferenceView.image = userDrawView2.image;
-        
         //OpenCVWrapper.makeGrayFromImage( spiralImageView.image),
         //OpenCVWrapper.makeGrayFromImage( userDrawView2.image)
+        //        userDrawView2.image = nil;
+        //        userDrawView2.backgroundColor = UIColor.clearColor();
+        //        userDrawView2.alpha = 1.0;
+
+        
+        
+        userDrawView.image = OpenCVWrapper.cleanse(userDrawView2.image);
+ 
+        imageDifferenceView.image = OpenCVWrapper.subtractImages(  userDrawView2.image, spiralImageView.image);
 
     }
     
@@ -101,6 +117,7 @@ class ViewController: UIViewController {
         isSwiping = true;
         if let touch = touches.first{
             let currentPoint = touch.locationInView(userDrawView2)
+            print(currentPoint);
             UIGraphicsBeginImageContext(self.userDrawView2.frame.size)
             self.userDrawView2.image?.drawInRect(CGRectMake(0, 0, self.userDrawView2.frame.size.width, self.userDrawView2.frame.size.height))
             CGContextMoveToPoint(UIGraphicsGetCurrentContext(), lastPoint.x, lastPoint.y)

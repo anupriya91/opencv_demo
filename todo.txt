@@ -1,0 +1,8 @@
+--> have a function in ViewController which resets all IUImageViews to default.
+right now, for some reason, upon 2nd button click, the userDrawView doesn't show up as white on black, shows strokes black on white from previous drawing session, and the imageDifferenceView shows a complete spiral.
+
+--> score the imageDifferenceView image
+
+
+--> add feature for multiple trials, average best 3 of 5 or something.
+
