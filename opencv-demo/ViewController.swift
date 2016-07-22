@@ -85,20 +85,15 @@ class ViewController: UIViewController {
 //        
 //        imageDifferenceView.image = nil;
 //        userDrawView.image = nil;
-        //userDrawView2.image = nil;
-        //imageDifferenceView.image = userDrawView2.image;
-        //OpenCVWrapper.makeGrayFromImage( spiralImageView.image),
-        //OpenCVWrapper.makeGrayFromImage( userDrawView2.image)
-        //        userDrawView2.image = nil;
-        //        userDrawView2.backgroundColor = UIColor.clearColor();
-        //        userDrawView2.alpha = 1.0;
+//        userDrawView2.image = nil;
+//        imageDifferenceView.image = userDrawView2.image;
+
 
         
         
-        userDrawView.image = OpenCVWrapper.cleanse(userDrawView2.image);
- 
+        userDrawView.image = userDrawView2.image;//OpenCVWrapper.cleanse(userDrawView2.image);
+        
         imageDifferenceView.image = OpenCVWrapper.subtractImages(  userDrawView2.image, spiralImageView.image);
-
     }
     
     override func touchesBegan( touches: Set<UITouch>,

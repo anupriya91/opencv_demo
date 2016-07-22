@@ -16,7 +16,6 @@ using namespace std;
 
 +(NSString *) openCVVersionString{
     return [NSString stringWithFormat: @"OpenCV Version %s", CV_VERSION];
-    
 }
 
 +(UIImage *) makeGrayFromImage:(UIImage *)image {
@@ -44,17 +43,27 @@ using namespace std;
 //    cout << "imageMat2 " << imageMat2.type() <<endl;
     
     cv::Mat imageMat3;
+    //imageMat3 = cv::Mat::zeros(imageMat1.rows , imageMat1.cols);
+    
+    
     cv::bitwise_not(imageMat1, imageMat1);
     cv::bitwise_or(imageMat1, imageMat2, imageMat3);
-    //cv::bitwise_xor(imageMat1, imageMat2, imageMat3);
+    //cv::add(imageMat1, imageMat2, imageMat3);
     return MatToUIImage(imageMat3);
     
 }
 
 +(UIImage *) cleanse:(UIImage *)image {
+    
     cv::Mat imageMat1;
     UIImageToMat(image, imageMat1);
-    return MatToUIImage(imageMat1);
+    
+    
+   //return MatToUIImage(imageMat1);
+    
+    
+    UIImage* result =   MatToUIImage(imageMat1);
+    return result;
 }
 
 @end
